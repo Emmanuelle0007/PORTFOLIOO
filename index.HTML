@@ -10,10 +10,10 @@
       theme: {
         extend: {
           colors: {
-            beige:      '#f0e6d3',
+            beige:        '#f0e6d3',
             'beige-dark': '#e0cdb0',
             'beige-card': '#ece0cc',
-            mauve:      '#9b7fa6',
+            mauve:        '#9b7fa6',
             'mauve-dark': '#7a5f87',
           }
         }
@@ -23,28 +23,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body { font-family: 'Poppins', sans-serif; }
-    section { scroll-margin-top: 90px; }
-    .fade-up { opacity: 0; transform: translateY(36px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade-up.show { opacity: 1; transform: translateY(0); }
-    .proj-card:hover .proj-overlay { opacity: 1; }
-    .exp-card ul li::before { content: "→ "; color: #9b7fa6; }
-  </style>
 </head>
-<body class="bg-beige text-gray-900 overflow-x-hidden">
+<body class="bg-beige text-gray-900 overflow-x-hidden" style="font-family: 'Poppins', sans-serif;">
+
+<style>
+  section { scroll-margin-top: 90px; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-up').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(36px)';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  });
+</script>
 
 <header class="fixed w-full bg-beige border-b border-beige-dark z-50">
   <nav class="max-w-6xl mx-auto px-4 md:px-6">
     <div class="flex justify-between items-center py-4">
       <h1 class="font-extrabold text-lg text-gray-900 tracking-widest">EMMANUELLE</h1>
-      <ul class="hidden md:flex gap-9">
+      <ul class="hidden md:flex gap-9 list-none">
         <li><a href="#home"       class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Accueil</a></li>
         <li><a href="#about"      class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">A Propos</a></li>
         <li><a href="#skills"     class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Skills</a></li>
         <li><a href="#projects"   class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Projets</a></li>
-        <li><a href="#experience" class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Expériences</a></li>
-        <li><a href="#contact"    class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Contacts</a></li>
+        <li><a href="#experience" class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Experiences</a></li>
+        <li><a href="#contact"    class="text-gray-500 text-xs tracking-widest hover:text-gray-900 transition-colors no-underline">Contact</a></li>
       </ul>
       <button id="mobile-menu-btn" class="md:hidden bg-transparent border-0 cursor-pointer text-gray-500 p-2">
         <i class="fas fa-bars text-xl"></i>
@@ -55,69 +70,92 @@
       <a href="#about"      class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">A Propos</a>
       <a href="#skills"     class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">Skills</a>
       <a href="#projects"   class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">Projets</a>
-      <a href="#experience" class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">Expériences</a>
-      <a href="#contact"    class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">Contacts</a>
+      <a href="#experience" class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">Experiences</a>
+      <a href="#contact"    class="block px-4 py-3 text-gray-500 text-sm hover:text-gray-900 transition-colors no-underline">Contact</a>
     </div>
   </nav>
 </header>
 
 <main class="max-w-6xl mx-auto px-4 md:px-6 pt-28 space-y-32">
 
-  <!-- ACCUEIL -->
- <section id="home" class="min-h-[80vh] flex items-center fade-up">
+  <section id="home" class="min-h-[80vh] flex items-center fade-up">
     <div class="w-full flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-14 text-center md:text-left">
-
-      <!-- Texte + boutons -->
       <div class="flex flex-col items-center md:items-start">
         <p class="text-mauve text-xs tracking-[0.15em] uppercase mb-4">Bonjour</p>
         <h1 class="text-3xl md:text-6xl font-extrabold leading-tight mb-4 text-gray-900">
           j'suis<br><span class="text-mauve">Emmanuelle</span>
         </h1>
         <h2 class="font-light text-sm md:text-base text-gray-500 mb-6 tracking-wide">
-          Front-End Développeuse \ Étudiante en Génie Informatique
+          Front-End Developeuse · Etudiante en Genie Informatique
         </h2>
         <p class="text-gray-500 leading-relaxed max-w-sm mb-8 text-sm">
-          Créative et curieuse, je développe des interfaces web à la fois modernes et clean tout en mettant l'accent sur l'esthétique et l'expérience utilisateur
+          Creative et curieuse, je developpe des interfaces web a la fois modernes et clean tout en mettant l'accent sur l'esthetique et l'experience utilisateur.
         </p>
         <div class="flex gap-4 flex-wrap justify-center md:justify-start">
           <a href="#projects" class="bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors no-underline">Voir mes projets</a>
           <a href="#contact"  class="bg-transparent border border-mauve text-gray-900 font-normal text-sm px-6 py-2.5 rounded-lg hover:bg-mauve hover:text-white transition-colors no-underline">Me contacter</a>
         </div>
       </div>
-
-      <!-- Photo -->
       <div class="flex justify-center flex-shrink-0">
         <div class="w-40 h-40 md:w-64 md:h-64 rounded-full border-4 border-mauve overflow-hidden shadow-lg">
           <img src="kuromi.png" alt="Emmanuelle" class="w-full h-full object-cover object-top">
         </div>
       </div>
-
     </div>
   </section>
-  <!-- À PROPOS -->
+
   <section id="about" class="fade-up">
     <div class="w-12 h-0.5 bg-mauve mb-5"></div>
-    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-      À <span class="text-mauve">propos</span>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+      A <span class="text-mauve">propos</span>
     </h2>
-    <p class="text-gray-500 leading-relaxed max-w-2xl text-sm md:text-base">
-      Étudiante en génie informatique, ambitieuse et créative. Je crée des interfaces modernes, simples et responsives avec HTML, Tailwind et React.
-       Passionnée par le design et l'expérience utilisateur, j'aime apprendre, coder et créer des expériences web beaux simples et efficaces.
-    </p>
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div class="bg-beige-card border border-beige-dark rounded-2xl p-5 md:p-6">
+        <h3 class="text-sm font-semibold text-mauve tracking-widest uppercase mb-4">Profil</h3>
+        <p class="text-gray-500 leading-relaxed text-sm md:text-base">
+          Etudiante en Licence 2 Genie Informatique a l'Universite Professionnelle (Unipro), ambitieuse et creative. Je cree des interfaces modernes, simples et responsives. Passionnee par le design et l'experience utilisateur, j'aime apprendre, coder et creer des experiences web belles, simples et efficaces.
+        </p>
+      </div>
+      <div class="bg-beige-card border border-beige-dark rounded-2xl p-5 md:p-6">
+        <h3 class="text-sm font-semibold text-mauve tracking-widest uppercase mb-5">Formation</h3>
+        <div class="space-y-4 text-sm text-gray-500">
+          <div class="flex justify-between items-start gap-2">
+            <div>
+              <p class="font-semibold text-gray-900">Licence 2 — Genie Informatique</p>
+              <p>Universite Professionnelle (Unipro)</p>
+            </div>
+            <span class="text-xs bg-beige-dark text-gray-500 px-2 py-0.5 rounded-full whitespace-nowrap">2025–2026</span>
+          </div>
+          <div class="w-full h-px bg-beige-dark"></div>
+          <div class="flex justify-between items-start gap-2">
+            <div>
+              <p class="font-semibold text-gray-900">Licence 1 — Genie Informatique</p>
+              <p>Universite Professionnelle</p>
+            </div>
+            <span class="text-xs bg-beige-dark text-gray-500 px-2 py-0.5 rounded-full whitespace-nowrap">2024–2025</span>
+          </div>
+          <div class="w-full h-px bg-beige-dark"></div>
+          <div class="flex justify-between items-start gap-2">
+            <div>
+              <p class="font-semibold text-gray-900">Bac General</p>
+              <p>CEMINACE</p>
+            </div>
+            <span class="text-xs bg-beige-dark text-gray-500 px-2 py-0.5 rounded-full whitespace-nowrap">2022–2023</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="fade-up space-y-10">
     <div class="text-center">
       <div class="w-12 h-0.5 bg-mauve mx-auto mb-5"></div>
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Mes <span class="text-mauve">Skills</span></h2>
     </div>
-    <div class="grid md:grid-cols-2 gap-8">
-
-      <!-- Front-End -->
+    <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-beige-card border border-beige-dark rounded-2xl p-5 md:p-7">
         <h3 class="text-sm font-semibold text-mauve mb-6 tracking-widest uppercase">Front-End</h3>
-        <div class="grid grid-cols-3 gap-3 md:gap-4">
+        <div class="grid grid-cols-2 gap-3 md:gap-4">
           <div class="bg-beige border border-beige-dark rounded-xl p-3 md:p-4 text-center hover:border-mauve hover:-translate-y-1 transition-all cursor-default">
             <i class="devicon-html5-plain colored text-3xl md:text-4xl"></i>
             <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">HTML</p>
@@ -144,11 +182,9 @@
           </div>
         </div>
       </div>
-
-      <!-- Back-End -->
       <div class="bg-beige-card border border-beige-dark rounded-2xl p-5 md:p-7">
-        <h3 class="text-sm font-semibold text-mauve mb-6 tracking-widest uppercase">Back-End & Outils</h3>
-        <div class="grid grid-cols-3 gap-3 md:gap-4">
+        <h3 class="text-sm font-semibold text-mauve mb-6 tracking-widest uppercase">Back-End</h3>
+        <div class="grid grid-cols-2 gap-3 md:gap-4">
           <div class="bg-beige border border-beige-dark rounded-xl p-3 md:p-4 text-center hover:border-mauve hover:-translate-y-1 transition-all cursor-default">
             <i class="devicon-java-plain colored text-3xl md:text-4xl"></i>
             <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">Java</p>
@@ -162,6 +198,19 @@
             <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">MySQL</p>
           </div>
           <div class="bg-beige border border-beige-dark rounded-xl p-3 md:p-4 text-center hover:border-mauve hover:-translate-y-1 transition-all cursor-default">
+            <i class="devicon-nodejs-plain colored text-3xl md:text-4xl"></i>
+            <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">Node.js</p>
+          </div>
+          <div class="bg-beige border border-beige-dark rounded-xl p-3 md:p-4 text-center hover:border-mauve hover:-translate-y-1 transition-all cursor-default">
+            <i class="devicon-typescript-plain colored text-3xl md:text-4xl"></i>
+            <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">TypeScript</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-beige-card border border-beige-dark rounded-2xl p-5 md:p-7">
+        <h3 class="text-sm font-semibold text-mauve mb-6 tracking-widest uppercase">Outils</h3>
+        <div class="grid grid-cols-2 gap-3 md:gap-4">
+          <div class="bg-beige border border-beige-dark rounded-xl p-3 md:p-4 text-center hover:border-mauve hover:-translate-y-1 transition-all cursor-default">
             <i class="devicon-git-plain colored text-3xl md:text-4xl"></i>
             <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">Git</p>
           </div>
@@ -173,86 +222,136 @@
             <i class="devicon-vscode-plain colored text-3xl md:text-4xl"></i>
             <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">VS Code</p>
           </div>
+          <div class="bg-beige border border-beige-dark rounded-xl p-3 md:p-4 text-center hover:border-mauve hover:-translate-y-1 transition-all cursor-default">
+            <i class="devicon-wordpress-plain colored text-3xl md:text-4xl"></i>
+            <p class="text-xs font-semibold mt-2 text-gray-900 tracking-wide">WordPress</p>
+          </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- PROJETS -->
-  <section id="projects" class="fade-up space-y-10">
-    <div class="text-center">
-      <div class="w-12 h-0.5 bg-mauve mx-auto mb-5"></div>
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Mes <span class="text-mauve">Projets</span></h2>
-    </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+ <section id="projects" class="fade-up space-y-10">
+  <div class="text-center">
+    <div class="w-12 h-0.5 bg-mauve mx-auto mb-5"></div>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+      Mes <span class="text-mauve">Projets</span>
+    </h2>
+  </div>
 
-      <div class="proj-card relative bg-beige-card border border-beige-dark rounded-xl overflow-hidden hover:border-mauve hover:-translate-y-1 transition-all">
-        <div class="h-40 overflow-hidden">
-          <img src="banque.jpg" alt="Projet bancaire" class="w-full h-full object-cover">
-        </div>
-        <div class="p-5 space-y-3">
-          <h3 class="text-base font-bold text-gray-900">Projet bancaire</h3>
-          <p class="text-sm text-gray-500">Gestion banque</p>
-          <div class="flex gap-3 text-2xl items-center">
-            <i class="devicon-java-plain colored"></i>
-          </div>
-        </div>
-        <div class="proj-overlay absolute inset-0 bg-beige/95 opacity-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300">
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Projet bancaire</h3>
-          <p class="text-xs text-gray-500 mb-5 leading-relaxed">
-            Ce projet Java consiste à simuler un menu bancaire interactif. Il permet à l'utilisateur de créer un compte bancaire, d'effectuer des opérations comme le dépôt et le retrait d'argent, de consulter le solde du compte et de faire une demande de prêt.
-          </p>
-          <a href="Capture d'écran 2026-02-14 140439.png" class="bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors no-underline">Voir le projet</a>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <div class="relative bg-beige-card border border-beige-dark rounded-xl overflow-hidden hover:border-mauve hover:-translate-y-1 transition-all group">
+      <div class="h-40 overflow-hidden">
+        <img src="banque.jpg" alt="Projet bancaire" class="w-full h-full object-cover">
+      </div>
+
+      <div class="p-5 space-y-3">
+        <h3 class="text-base font-bold text-gray-900">Projet bancaire</h3>
+        <p class="text-sm text-gray-500">Simulation d’un systeme de gestion bancaire en Java.</p>
+
+        <div class="flex gap-3 text-2xl items-center">
+          <i class="devicon-java-plain colored"></i>
         </div>
       </div>
 
-      <div class="proj-card relative bg-beige-card border border-beige-dark rounded-xl overflow-hidden hover:border-mauve hover:-translate-y-1 transition-all">
-        <div class="h-40 overflow-hidden">
-          <img src="Sutori.jpg" alt="Projet electoral" class="w-full h-full object-cover">
-        </div>
-        <div class="p-5 space-y-3">
-          <h3 class="text-base font-bold text-gray-900">Projet électoral</h3>
-          <p class="text-sm text-gray-500">Gestion et comptabilisation des votes</p>
-          <div class="flex gap-3 text-2xl">
-            <i class="devicon-javascript-plain colored"></i>
-          </div>
-        </div>
-        <div class="proj-overlay absolute inset-0 bg-beige/95 opacity-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300">
-          <h3 class="text-xl font-bold text-gray-900 mb-3">Projet électoral</h3>
-          <p class="text-xs text-gray-500 mb-5 leading-relaxed">
-            Ce projet de gestion d'élection permet de compter le nombre total de votants, les bulletins nuls ainsi que les voix obtenues par chaque candidat. Les résultats sont affichés selon les zones : villes, régions, départements, communes et centres de vote.
-          </p>
-          <a href="Capture d'écran 2026-02-14 145234.png" class="bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors no-underline">Voir le projet</a>
+      <div class="absolute inset-0 bg-beige/95 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Projet bancaire</h3>
+        <p class="text-xs text-gray-500 mb-5 leading-relaxed">
+          Application Java simulant un menu bancaire interactif : creation de compte,
+          depot, retrait, consultation de solde et demande de pret.
+        </p>
+
+        <a href="Capture d'ecran 2026-02-14 140439.png"
+           class="bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors no-underline">
+          Voir le projet
+        </a>
+      </div>
+    </div>
+
+    <div class="relative bg-beige-card border border-beige-dark rounded-xl overflow-hidden hover:border-mauve hover:-translate-y-1 transition-all group">
+      <div class="h-40 overflow-hidden">
+        <img src="Sutori.jpg" alt="Projet electoral" class="w-full h-full object-cover">
+      </div>
+
+      <div class="p-5 space-y-3">
+        <h3 class="text-base font-bold text-gray-900">Projet electoral</h3>
+        <p class="text-sm text-gray-500">Gestion et comptabilisation des votes.</p>
+
+        <div class="flex gap-3 text-2xl">
+          <i class="devicon-c-plain colored"></i>
         </div>
       </div>
 
-    </div>
-  </section>
+      <div class="absolute inset-0 bg-beige/95 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Projet electoral</h3>
+        <p class="text-xs text-gray-500 mb-5 leading-relaxed">
+          Programme en C permettant de compter les votants, les bulletins nuls
+          et les voix par candidat avec affichage par villes et regions.
+        </p>
 
-  <!-- EXPÉRIENCES -->
+        <a href="Capture d'ecran 2026-02-14 145234.png"
+           class="bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors no-underline">
+          Voir le projet
+        </a>
+      </div>
+    </div>
+
+    <div class="relative bg-beige-card border border-beige-dark rounded-xl overflow-hidden hover:border-mauve hover:-translate-y-1 transition-all group">
+      <div class="h-40 overflow-hidden">
+        <img src="ahhhhh.jpg" alt="Taches Figma & React" class="w-full h-full object-cover object-top">
+      </div>
+
+      <div class="p-5 space-y-3">
+        <h3 class="text-base font-bold text-gray-900">Taches Figma & React</h3>
+        <p class="text-sm text-gray-500">
+          Realisation de differentes taches pratiques avec React et Tailwind,
+          concues sur Figma et developpees sous WebStorm.
+        </p>
+
+        <div class="flex gap-3 text-2xl items-center">
+          <i class="devicon-react-original colored"></i>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" class="w-6 h-6" alt="Tailwind">
+          <i class="devicon-figma-plain colored"></i>
+        </div>
+      </div>
+
+      <div class="absolute inset-0 bg-beige/95 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">Taches Figma & React</h3>
+        <p class="text-xs text-gray-500 mb-5 leading-relaxed">
+          Reproduction de maquettes Figma en interfaces web modernes et responsives
+          avec React et Tailwind CSS.
+        </p>
+
+        <a href="Capture d'écran 2026-02-16 230544.png"
+           class="bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-6 py-2.5 rounded-lg transition-colors no-underline">
+          Voir le projet
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
   <section id="experience" class="fade-up space-y-10">
     <div class="text-center">
       <div class="w-12 h-0.5 bg-mauve mx-auto mb-5"></div>
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Mes <span class="text-mauve">Expériences</span></h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Mes <span class="text-mauve">Experiences</span></h2>
     </div>
-
     <div class="space-y-6 max-w-3xl mx-auto">
-
-      <!-- AIGLIX -->
-      <div class="exp-card bg-beige-card border border-beige-dark border-l-4 border-l-mauve rounded-xl p-5 md:p-6">
+      <div class="bg-beige-card border border-beige-dark border-l-4 border-l-mauve rounded-xl p-5 md:p-6">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
           <div>
-            <h3 class="text-base font-bold text-gray-900">Stagiaire Développeuse</h3>
-            <p class="text-sm text-mauve font-semibold mt-1">Aiglix</p>
+            <h3 class="text-base font-bold text-gray-900">Stagiaire Developeuse Front-End</h3>
+            <p class="text-sm text-mauve font-semibold mt-1">Aiglix Lab</p>
           </div>
-          <span class="text-xs text-gray-500 bg-beige-dark px-3 py-1 rounded-full whitespace-nowrap self-start">2025 – 2026</span>
+          <span class="text-xs text-gray-500 bg-beige-dark px-3 py-1 rounded-full whitespace-nowrap self-start">2025 - 2026</span>
         </div>
         <ul class="mt-4 space-y-1 text-sm text-gray-500 leading-relaxed list-none p-0">
-          <li><strong class="text-gray-900">React</strong> — apprentissage de la création d'interfaces web avec des composants</li>
-          <li><strong class="text-gray-900">Tailwind CSS</strong> — apprentissage du style rapide des pages web</li>
-          <li><strong class="text-gray-900">Node.js</strong> — découverte du JavaScript côté serveur</li>
-          <li><strong class="text-gray-900">TypeScript</strong> — apprentissage d'un JavaScript plus structuré</li>
+          <li><strong class="text-gray-900">React</strong> - apprentissage de la creation d'interfaces web avec des composants</li>
+          <li><strong class="text-gray-900">Tailwind CSS</strong> - apprentissage du style rapide des pages web</li>
+          <li><strong class="text-gray-900">Node.js</strong> - decouverte du JavaScript cote serveur</li>
+          <li><strong class="text-gray-900">TypeScript</strong> - apprentissage d'un JavaScript plus structure</li>
         </ul>
         <div class="flex gap-3 text-2xl items-center mt-4">
           <i class="devicon-react-original colored"></i>
@@ -261,54 +360,85 @@
           <i class="devicon-typescript-plain colored"></i>
         </div>
       </div>
-
-      <!-- TGI -->
-      <div class="exp-card bg-beige-card border border-beige-dark border-l-4 border-l-mauve rounded-xl p-5 md:p-6">
+      <div class="bg-beige-card border border-beige-dark border-l-4 border-l-mauve rounded-xl p-5 md:p-6">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
           <div>
             <h3 class="text-base font-bold text-gray-900">Stagiaire</h3>
             <p class="text-sm text-mauve font-semibold mt-1">TGI</p>
           </div>
-          <span class="text-xs text-gray-500 bg-beige-dark px-3 py-1 rounded-full whitespace-nowrap self-start">2024 – 2025</span>
+          <span class="text-xs text-gray-500 bg-beige-dark px-3 py-1 rounded-full whitespace-nowrap self-start">2024 - 2025</span>
         </div>
         <ul class="mt-4 space-y-1 text-sm text-gray-500 leading-relaxed list-none p-0">
-          <li><strong class="text-gray-900">WordPress</strong> — création et gestion de sites web</li>
-          <li><strong class="text-gray-900">Photoshop</strong> — retouche d'images et création de visuels</li>
-          <li><strong class="text-gray-900">Câblage réseau</strong> — initiation aux connexions réseau de base</li>
+          <li><strong class="text-gray-900">WordPress</strong> - creation et gestion de sites web</li>
+          <li><strong class="text-gray-900">Photoshop</strong> - retouche d'images et creation de visuels</li>
+          <li><strong class="text-gray-900">Cablage reseau</strong> - initiation aux connexions reseau de base</li>
         </ul>
         <div class="flex gap-3 text-2xl items-center mt-4">
           <i class="devicon-wordpress-plain colored"></i>
           <i class="devicon-photoshop-plain colored"></i>
         </div>
       </div>
-
+      <div class="bg-beige-card border border-beige-dark border-l-4 border-l-mauve rounded-xl p-5 md:p-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+          <div>
+            <h3 class="text-base font-bold text-gray-900">Professeure - Bureautique</h3>
+            <p class="text-sm text-mauve font-semibold mt-1">The Young Teacher's School (YTS)</p>
+          </div>
+          <span class="text-xs text-gray-500 bg-beige-dark px-3 py-1 rounded-full whitespace-nowrap self-start">Mai - Aout 2024</span>
+        </div>
+        <ul class="mt-4 space-y-1 text-sm text-gray-500 leading-relaxed list-none p-0">
+          <li><strong class="text-gray-900">Word</strong> - cours de traitement de texte a des eleves en formation</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="fade-up space-y-7 pb-8">
-    <div>
-      <div class="w-12 h-0.5 bg-mauve mb-5"></div>
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2"><span class="text-mauve">Contact</span></h2>
-      <p class="text-gray-500 text-sm">Contactez-moi, je serai ravie d'échanger avec vous.</p>
+  <section id="contact" class="fade-up pb-8">
+    <div class="bg-gradient-to-br from-mauve to-mauve rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Contactez <span class="text-mauve-dark">moi</span>
+        </h2>
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+          <a href="tel:+221781113156" class="bg-white/20 hover:bg-white/30 text-white px-6 py-2.5 rounded-full transition-colors no-underline">
+            +221 78 111 31 56
+          </a>
+          <a href="mailto:emmanuellemoudiongui3@gmail.com" class="bg-white/20 hover:bg-white/30 text-white px-6 py-2.5 rounded-full transition-colors no-underline break-all">
+            emmanuellemoudiongui3@gmail.com
+          </a>
+        </div>
+      </div>
+      <div class="space-y-6">
+        <h3 class="text-2xl font-bold text-white text-center mb-6">Envoyez un message</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <input id="f-nom" type="text" placeholder="Nom complet *" class="w-full bg-white/10 border border-white/20 rounded-lg px-5 py-4 text-sm text-white placeholder-white/60 focus:outline-none focus:border-beige transition-colors">
+          <input id="f-email" type="email" placeholder="Adresse e-mail *" class="w-full bg-white/10 border border-white/20 rounded-lg px-5 py-4 text-sm text-white placeholder-white/60 focus:outline-none focus:border-beige transition-colors">
+        </div>
+        <select id="f-type" class="w-full bg-white/10 border border-white/20 rounded-lg px-5 py-4 text-sm text-white focus:outline-none focus:border-beige transition-colors cursor-pointer">
+          <option value="" disabled selected class="bg-mauve-dark">Selectionnez le type de demande </option>
+          <option value="Collaboration" class="bg-mauve-dark">Collaboration</option>
+          <option value="Stage" class="bg-mauve-dark">Stage</option>
+          <option value="Projet" class="bg-mauve-dark">Projet</option>
+          <option value="Question" class="bg-mauve-dark">Question</option>
+          <option value="Autre" class="bg-mauve-dark">Autre</option>
+        </select>
+        <textarea id="f-message" rows="6" placeholder="Parle-moi de ton projet ou dis-lui juste bonjour..." class="w-full bg-white/10 border border-white/20 rounded-lg px-5 py-4 text-sm text-white placeholder-white/60 focus:outline-none focus:border-beige transition-colors resize-none"></textarea>
+        <div class="grid md:grid-cols-2 gap-4">
+  
+  <button onclick="envoyerWhatsApp()" 
+    class="bg-beige hover:bg-beige-dark text-mauve-dark font-bold text-base py-4 rounded-lg transition-colors border-0 cursor-pointer w-full">
+    Envoyer via WhatsApp
+  </button>
+
+  <a href="mailto:emmanuellemoudiongui3@gmail.com" 
+    class="bg-beige hover:bg-beige-dark text-mauve-dark font-bold text-base py-4 rounded-lg transition-colors text-center no-underline flex items-center justify-center">
+    Envoyer via e-mail
+  </a>
+
+</div>
+
+      </div>
     </div>
-    <div class="space-y-4">
-      <a href="mailto:emmanuellemoudiongui3@gmail.com" class="flex items-center gap-4 no-underline text-gray-500 hover:text-gray-900 transition-colors text-sm">
-        <span class="w-10 h-10 rounded-lg bg-beige-card border border-mauve flex items-center justify-center text-mauve flex-shrink-0">
-          <i class="fas fa-envelope"></i>
-        </span>
-        <span class="break-all">emmanuellemoudiongui3@gmail.com</span>
-      </a>
-      <a href="tel:+221781113156" class="flex items-center gap-4 no-underline text-gray-500 hover:text-gray-900 transition-colors text-sm">
-        <span class="w-10 h-10 rounded-lg bg-beige-card border border-mauve flex items-center justify-center text-mauve flex-shrink-0">
-          <i class="fas fa-phone"></i>
-        </span>
-        <span>+221 78 111 31 56</span>
-      </a>
-    </div>
-    <a href="mailto:emmanuellemoudiongui3@gmail.com" class="inline-block bg-mauve hover:bg-mauve-dark text-white font-semibold text-sm px-8 py-3 rounded-lg transition-colors no-underline">
-      <i class="fas fa-paper-plane mr-2"></i>Envoyer un message
-    </a>
   </section>
 
 </main>
@@ -317,71 +447,43 @@
   <i class="fas fa-arrow-up text-sm"></i>
 </button>
 
-<!-- footer -->
 <footer class="mt-24 py-12 px-4 md:px-6 bg-beige-card border-t border-beige-dark">
   <div class="max-w-4xl mx-auto">
     <div class="grid md:grid-cols-3 gap-10 mb-10">
-
       <div>
         <h3 class="font-extrabold text-xl text-gray-900 tracking-widest mb-3">EMMANUELLE</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Développeuse Web Front-End passionnée — Étudiante en Génie Informatique.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">Developeuse Web Front-End passionnee - Etudiante en Genie Informatique.</p>
       </div>
-
       <div>
         <h4 class="font-semibold text-xs tracking-widest uppercase text-gray-900 mb-4">Liens Rapides</h4>
-        <ul class="space-y-2">
-          <li><a href="#home"       class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Accueil</a></li>
-          <li><a href="#about"      class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">À propos</a></li>
-          <li><a href="#skills"     class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Skills</a></li>
-          <li><a href="#projects"   class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Projets</a></li>
-          <li><a href="#experience" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Expérience</a></li>
-          <li><a href="#contact"    class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Contact</a></li>
+        <ul class="space-y-2 list-none p-0">
+          <li><a href="#home" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Accueil</a></li>
+          <li><a href="#about" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">A propos</a></li>
+          <li><a href="#skills" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Skills</a></li>
+          <li><a href="#projects" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Projets</a></li>
+          <li><a href="#experience" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Experiences</a></li>
+          <li><a href="#contact" class="text-gray-500 text-sm no-underline hover:text-gray-900 transition-colors">Contact</a></li>
         </ul>
       </div>
-
       <div>
-        <h4 class="font-semibold text-xs tracking-widest uppercase text-gray-900 mb-4">Réseaux Sociaux</h4>
+        <h4 class="font-semibold text-xs tracking-widest uppercase text-gray-900 mb-4">Reseaux Sociaux</h4>
         <div class="flex gap-3 flex-wrap">
-          <a href="https://www.linkedin.com/in/emmanuelle-moudiongui-135a573a0" title="LinkedIn"
-             class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/Emmanuelle0007S" title="GitHub"
-             class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.snapchat.com/add/manue_nunu?share_id=PomXnHhXRu6W_VS1JtCrsQ&locale=en_SN" title="Snapchat"
-             class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all">
-            <i class="fab fa-snapchat"></i>
-          </a>
-          <a href="https://www.instagram.com/manuella_moud" title="Instagram"
-             class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://www.tiktok.com/@manue_nunu7" title="TikTok"
-             class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all">
-            <i class="fab fa-tiktok"></i>
-          </a>
+          <a href="https://www.linkedin.com/in/emmanuelle-moudiongui-135a573a0" title="LinkedIn" class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/Emmanuelle0007S" title="GitHub" class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all"><i class="fab fa-github"></i></a>
+          <a href="https://www.snapchat.com/add/manue_nunu" title="Snapchat" class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all"><i class="fab fa-snapchat"></i></a>
+          <a href="https://www.instagram.com/manuella_moud" title="Instagram" class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@manue_nunu7" title="TikTok" class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/221781113156" title="WhatsApp" class="w-9 h-9 rounded-lg bg-beige border border-beige-dark flex items-center justify-center text-gray-500 no-underline hover:border-mauve hover:text-mauve transition-all"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
-
     </div>
     <div class="border-t border-beige-dark pt-6 text-center text-gray-500 text-xs">
-      © 2026 Emmanuelle — Future Dev Front-End Queen &nbsp;|&nbsp; Développé par moi et Claude 
+      2026 Emmanuelle - Future Dev Front-End Queen | Developpe par moi et Claude
     </div>
   </div>
 </footer>
 
-<!-- les scripts -->
 <script>
-  const elements = document.querySelectorAll('.fade-up');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('show');
-    });
-  }, { threshold: 0.12 });
-  elements.forEach(el => observer.observe(el));
-
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = menuBtn.querySelector('i');
@@ -408,9 +510,22 @@
       backToTopBtn.classList.remove('flex');
     }
   });
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  function envoyerWhatsApp() {
+    const nom = document.getElementById('f-nom').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const type = document.getElementById('f-type').value;
+    const message = document.getElementById('f-message').value.trim();
+
+    if (!nom || !email || !type || !message) {
+      alert('Merci de remplir tous les champs obligatoires.');
+      return;
+    }
+
+    const texte = `Bonjour Emmanuelle !%0A%0ANom : ${encodeURIComponent(nom)}%0AEmail : ${encodeURIComponent(email)}%0AType de demande : ${encodeURIComponent(type)}%0A%0AMessage :%0A${encodeURIComponent(message)}`;
+    window.open(`https://wa.me/221781113156?text=${texte}`, '_blank');
+  }
 </script>
 
 </body>
